@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/server.ts",
     "build": "tsc",
     "build-prod": "tsc",
-    "start": "npm run build && nodemon src/api.ts"
+    "dev": "npm run build && nodemon src/api.ts"
   },
   "author": "walter vanegas",
   "license": "ISC",
