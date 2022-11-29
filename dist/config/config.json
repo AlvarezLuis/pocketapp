@@ -1,0 +1,17 @@
+{
+    "database": {
+        "host": "cpocketapp.ccx7b6wavb6j.us-east-1.rds.amazonaws.com",
+        "user": "admin",
+        "password": "Cpocket!2022",
+        "connectionLimit": 10000000,
+        "database": "cpocketappdb"
+    },
+    "server": {
+        "port": 8181,
+        "pageSize": 100,
+        "logger": {
+            "format": "tiny"
+        },
+        "jwtSign": "125034d5c91fb92fec295b5e2f6a7ffc"
+    }
+}
