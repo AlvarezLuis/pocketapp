@@ -46,7 +46,7 @@ function init(server, configs, database) {
     server.get('/api/users', asyncHandler(_userController.getAll.bind(_userController)));
     server.get('/api/user/:id', asyncHandler(_userController.get.bind(_userController)));
     server.get('/api/userexist/:id', asyncHandler(_userController.exist.bind(_userController)));
-    server.post('/api/createOrUpdateUser', new authenticate_1.authenticate().authenticateUser, asyncHandler(_userController.createOrUpdate.bind(_userController)));
+    server.post('/api/createOrUpdateUser', asyncHandler(_userController.createOrUpdate.bind(_userController)));
     server.delete('/api/deleteUser', new authenticate_1.authenticate().authenticateUser, asyncHandler(_userController.delete.bind(_userController)));
     //LOGIN
     server.get('/api/login', asyncHandler(_loginController.get.bind(_loginController)));

@@ -7,7 +7,7 @@ export declare class userController {
     exist(req: any, res: any, next: any): Promise<void>;
     get(req: any, res: any, next: any): Promise<void>;
     createOrUpdate(req: any, res: any, next: any): Promise<void>;
-    add(req: any, res: any, next: any): Promise<any>;
+    add(req: any, res: any, next: any): Promise<"A error was ocurred" | undefined>;
     private update;
     delete(req: any, res: any, next: any): Promise<void>;
 }

@@ -59,23 +59,23 @@ class userController {
     createOrUpdate(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const userInfo = req.body;
-            if (userInfo.iduser) {
-                const userdExist = yield this.manager.get(`SELECT 1
-                FROM user  
-                WHERE iduser = "${userInfo.iduser}";`);
-                if (userdExist && userdExist.length > 0) {
-                    res.status(400).send({
-                        errorCode: 'Error0004',
-                        error: `the id user ${userInfo.iduser} already exist`
-                    });
-                }
-                else {
-                    this.add(req, res, next);
-                }
-            }
-            else {
-                this.update(req, res, next);
-            }
+            this.add(req, res, next);
+            // if (userInfo.iduser) {
+            //     const userdExist: any[] = await this.manager.get(
+            //         `SELECT 1
+            //         FROM user  
+            //         WHERE iduser = "${userInfo.iduser}";`);
+            //     if (userdExist && userdExist.length > 0) {
+            //         res.status(400).send({
+            //             errorCode: 'Error0004',
+            //             error: `the id user ${userInfo.iduser} already exist`
+            //         })
+            //     } else {
+            //         this.add(req, res, next);
+            //     }
+            // } else {
+            //     this.add(req, res, next);
+            // }
         });
     }
     add(req, res, next) {
@@ -83,7 +83,7 @@ class userController {
             try {
                 const userInfo = req.body;
                 const resultAction = yield this.manager.actionWithParameters(`
-            INSERT IGNORE INTO user (name, lastName, documentType, document, phone, indicativeId, departamentId
+            INSERT IGNORE INTO user (name, lastName, documentType, document, phone, indicativeId, departamentId,
                 cityId, address, dateBirth, email, userName, password)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, [userInfo.name, userInfo.lastName, userInfo.documentType, userInfo.document, userInfo.phone, userInfo.indicativeId, userInfo.departamentId,
                     userInfo.cityId, userInfo.address, userInfo.dateBirth, userInfo.email, userInfo.userName, userInfo.password]);
@@ -92,11 +92,11 @@ class userController {
                 }
                 else {
                     userInfo.iduser = resultAction[0].insertId;
-                    return userInfo;
+                    res.json(userInfo);
                 }
             }
             catch (error) {
-                return error;
+                next(error);
             }
         });
     }
